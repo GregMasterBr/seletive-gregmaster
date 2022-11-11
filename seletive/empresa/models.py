@@ -49,6 +49,7 @@ class Vagas(models.Model):
     status = models.CharField(max_length=30, choices=choices_status)
     tecnologias_dominadas = models.ManyToManyField(Tecnologias)
     tecnologias_estudar = models.ManyToManyField(Tecnologias, related_name='estudar')
+    email = models.EmailField(null=True)
 
 
     def __str__(self):
