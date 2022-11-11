@@ -63,6 +63,11 @@
     color: #fff;
     background-color: #007bff;
 }
+
+.badge-dark {
+    color: #fff;
+    background-color: #343a40;
+}
 .btn-orange{
 
     background-color: #ED8554;
