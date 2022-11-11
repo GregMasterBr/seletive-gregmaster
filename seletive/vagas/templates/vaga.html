@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block 'title' %}Vagas{% endblock%}
+{% block 'title' %}Vaga->{{vaga.empresa}}: {{vaga.titulo}} {% endblock%}
 {% block 'head' %}
     <link rel="stylesheet" href="{% static 'vaga/css/vaga.css' %}"> 
 {% endblock %}
