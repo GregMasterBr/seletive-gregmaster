@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load filtro %}
 
 {% block 'title' %}Lista Empresas{% endblock%}
 
@@ -45,6 +46,7 @@
 
                 <table class="tabela" cellpadding="20">
                     <tr>
+                        <th>#</th>
                         <th>Nome</th>
                         <th>Endereço</th>
                         <th>Tecnologias usadas</th>
@@ -52,22 +54,30 @@
                         <th>Ação</th>
                     </tr>
 
-                    
-                        <tr class="tabela-linha" >
-                            <td>Nome da empresa</td>
-                            <td>Endereço da empresa</td>
-                            <td>
-                                <select class="form-select">       
-                                    <option></option>                    
-                                </select>
-                            </td>
-                            <td>
-                                Quantidade de vagas
-                            </td>
-                            <td>
-                                <a class="btn-excluir" href="{% url 'excluir_empresa' empresa.id %}" >Excluir empresa</a>
-                            </td>
-                        </tr>
+                    {% for empresa in empresas%}
+                    <tr {% if not forloop.counter|is_par %} class="tabela-linha" {% endif %}>
+                        <td><span class="badge badge-pill badge-primary">{{forloop.counter}}</span></td>
+                        <td>{{empresa.nome}}</td>
+                        <td>{{empresa.endereco}}</td>
+                        <td>
+                            {% for tech in empresa.tecnologias.all %}
+                                <span class="badge badge-info">{{tech}}</span>  
+                            {% endfor %}   
+                            
+                            <select class="form-select " style="display: none;">                                    
+                                {% for tech in empresa.tecnologias.all %}
+                                    <option>{{tech}}</option>
+                                {% endfor %}                     
+                            </select>
+                        </td>
+                        <td>
+                            Quantidade de vagas
+                        </td>
+                        <td>
+                            <a class="btn-excluir"  href="{% url 'excluir_empresa' empresa.id %}">Excluir empresa</a>
+                        </td>
+                    </tr>
+                {% endfor %}          
                     
                 </table>
             </div>

@@ -54,6 +54,15 @@
     padding: 30px;
 }
 
+.badge-info {
+    color: #fff;
+    background-color: #17a2b8;
+}
+
+.badge-primary {
+    color: #fff;
+    background-color: #007bff;
+}
 .btn-orange{
 
     background-color: #ED8554;
