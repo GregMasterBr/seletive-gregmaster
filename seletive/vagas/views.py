@@ -39,3 +39,7 @@ def nova_vaga(request):
         return redirect(f'/home/empresa/{empresa}')
     elif request.method == "GET":
         raise Http404()
+
+def vaga(request, id):
+    vaga = get_object_or_404(Vagas, id=id)
+    return render(request, 'vaga.html', {'vaga': vaga})        
