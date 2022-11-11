@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'title' %}Detalhe da {{empresa.nome}}{% endblock%}
+
+{% block 'head' %}
+    <link href="{% static 'empresa/css/empresas.css' %}" rel="stylesheet">
+    <link href="{% static 'empresa/css/empresa.css' %}" rel="stylesheet">
+{% endblock%}
+
+{% block 'body' %}
+    
+    <br />
+    <div class="container">
+        {% if messages %}
+            {% for message in messages %}
+                <br>
+                <section class="alert {{message.tags}}">
+                    {{message}}
+                </section>
+            {% endfor %}
+        {% endif %}    
+        <div class="row">
+            <div class="col-md-3">
+                <img width="100%" src="{{empresa.logo.url}}" />
+            </div>
+
+            <div class="col-md">
+                <h1 class="titulo">{{empresa.nome}}</h1>
+                <p class="paragrafo">{{empresa.endereco}}</p>
+            </div>
+
+
+
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Nicho de mercado:</label>
+                <input style="display: none;" disabled type="text" class="form-control" value="{{empresa.get_nicho_mercado_display}}" />
+                <h2>{{empresa.get_nicho_mercado_display}}</h2>
+
+            </div>
+
+            <div class="col-md-3">
+                <label>Tecnologias usadas:</label>
+                {% for tech in empresa.tecnologias.all %}
+                    <span class="badge badge-info">{{tech}}</span>  
+                {% endfor %}   
+                <select class="form-select " style="display: none;">                                    
+                    {% for tech in empresa.tecnologias.all %}
+                        <option>{{tech}}</option>
+                    {% endfor %}                     
+                </select>                
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-7">
+                <label>Características da empresa:</label>
+                <br />
+                <p>
+                    {{empresa.caracteristica_empresa}}
+                </p> 
+                <textarea style="display: none;"  disabled class="form-control">{{empresa.caracteristica_empresa}}</textarea>
+
+            </div>
+
+            <div class="col-md-3">
+                
+                
+            </div>
+        </div>
+
+        <hr>
+
+        <a class="btn btn-lg btn-orange">Nova vaga</a>
+
+        <div class="row">
+            vagas
+        </div>
+
+    </div>
+    <br />
+    <br />
+
+{% endblock %}
