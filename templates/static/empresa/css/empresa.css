@@ -12,6 +12,11 @@
     background-color: #ED8554;
     color: white;
 }
+.btn-orange:hover{
+    background-color: #ED8554;
+    color: white;
+    font-weight: bold;
+}
 
 label{
     font-weight: bold;
