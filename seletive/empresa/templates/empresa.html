@@ -25,23 +25,26 @@
             <div class="borda-box"></div>
             <div class="body-box">
             
-                <form>
-                <div class="row">
-                    
-                        <div class="col-md-5">
-                            <input type="text" placeholder="Busque pelo nome" class="form-control" name="nome" />
-                        </div>
+                <form action="{% url 'empresa' %}" method="GET">{% csrf_token %}
+                    <div class="row">
+                        
+                            <div class="col-md-5">
+                                <input type="text" placeholder="Busque pelo nome" class="form-control" name="nome" />
+                            </div>
 
-                        <div class="col-md-4">
-                            <select class="form-select" name="tecnologias">
-                                <option value="">--------</option>
-                            </select>
+                            <div class="col-md-4">
+                                <select class="form-select" name="tecnologias">
+                                    <option value="">-----------</option>
+                                    {% for tech in tecnologias%}
+                                        <option value="{{tech.id}}">{{tech}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        
+                        <div class="col-md-3">
+                            <input type="submit" value="FILTRAR" class="btn btn-lg btn-orange" />
                         </div>
-                    
-                    <div class="col-md-3">
-                        <input type="submit" value="FILTRAR" class="btn btn-lg btn-orange" />
                     </div>
-                </div>
                 </form>
 
                 <table class="tabela" cellpadding="20">
