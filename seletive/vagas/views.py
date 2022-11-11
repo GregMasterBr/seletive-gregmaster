@@ -1,6 +1,7 @@
 
 from django.shortcuts import render, redirect, get_object_or_404, Http404
 from seletive.empresa.models import Vagas
+from .models import Tarefa
 from django.urls import reverse
 #Django Messages - definida lá no settings - MESSAGES_TAG
 from django.contrib import messages
@@ -43,3 +44,18 @@ def nova_vaga(request):
 def vaga(request, id):
     vaga = get_object_or_404(Vagas, id=id)
     return render(request, 'vaga.html', {'vaga': vaga})        
+
+
+
+def nova_tarefa(request, id_vaga):
+    titulo = request.POST.get('titulo')
+    prioridade = request.POST.get("prioridade")
+    data = request.POST.get('data')
+    
+    tarefa = Tarefa(vaga_id=id_vaga,
+                    titulo=titulo,
+                    prioridade=prioridade,
+                    data=data)
+    tarefa.save()
+    messages.add_message(request, constants.SUCCESS, 'Tarefa criada com sucesso')
+    return redirect(f'/vagas/vaga/{id_vaga}')        

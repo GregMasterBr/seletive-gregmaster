@@ -80,7 +80,7 @@
                 <div class="col-md">
                     <div class="box-vagas">
                         <div class="header-vagas">
-                            {{vaga.titulo}}
+                            <a href="{% url 'vaga' vaga.id %}">{{vaga.titulo}}</a>
                         </div>
 
                         <div class="body-vagas">
