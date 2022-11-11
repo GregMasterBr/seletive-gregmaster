@@ -60,7 +60,7 @@
                     {% for empresa in empresas%}
                     <tr {% if not forloop.counter|is_par %} class="tabela-linha" {% endif %}>
                         <td><span class="badge badge-pill badge-primary">{{forloop.counter}}</span></td>
-                        <td>{{empresa.nome}}</td>
+                        <td><a href="{% url 'empresa_unica' empresa.id %}" >{{empresa.nome}}</a></td>
                         <td>{{empresa.endereco}}</td>
                         <td>
                             {% for tech in empresa.tecnologias.all %}
