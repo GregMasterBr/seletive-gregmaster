@@ -46,3 +46,15 @@ def nova_empresa(request):
         empresa.save()
         messages.add_message(request, constants.SUCCESS, 'Empresa cadastrada com sucesso')
         return redirect('/home/empresas')
+
+def empresas(request):
+    empresas = Empresa.objects.all()
+    tecnologias = Tecnologias.objects.all()
+    return render(request, 'empresa.html', {'empresas': empresas, 'tecnologias': tecnologias})
+
+
+def excluir_empresa(request, id):
+    empresa = Empresa.objects.get(id=id)
+    empresa.delete()
+    messages.add_message(request, constants.SUCCESS, 'Empresa excluída com sucesso')
+    return redirect('/home/empresas')

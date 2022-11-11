@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block 'title' %} Nova Empresa{% endblock%}
+{% block 'title' %}Nova Empresa{% endblock%}
 {% block 'head' %}   
     <link href="{% static 'empresa/css/nova_empresa.css' %}" rel="stylesheet" />
 {% endblock%}
@@ -15,6 +15,7 @@
             </div>
             {% if messages %}
                 {% for message in messages %}
+                    <br />
                     <div class="alert {{message.tags}} alert-dismissible fade show" role="alert">
                         {{message}}
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
