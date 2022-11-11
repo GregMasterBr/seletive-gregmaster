@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from .models import Tecnologias, Empresa
+from .models import Tecnologias, Empresa,Vagas
 from django.urls import reverse
 #Django Messages - definida lá no settings - MESSAGES_TAG
 from django.contrib import messages
@@ -68,5 +68,11 @@ def excluir_empresa(request, id):
     return redirect('/home/empresas')
 
 def empresa(request, id):
-    empresa_unica = get_object_or_404(Empresa, id=id)
-    return render(request, 'empresa_unica.html', {'empresa': empresa_unica})    
+    empresa = get_object_or_404(Empresa, id=id)
+    empresas = Empresa.objects.all()
+    tecnologias = Tecnologias.objects.all()
+    vagas = Vagas.objects.filter(empresa_id=id)
+    return render(request, 'empresa_unica.html', {'empresa': empresa,
+                                            'tecnologias': tecnologias,
+                                            'empresas': empresas,
+                                            'vagas': vagas})
