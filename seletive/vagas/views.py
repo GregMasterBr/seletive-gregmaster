@@ -53,11 +53,14 @@ def nova_tarefa(request, id_vaga):
     titulo = request.POST.get('titulo')
     prioridade = request.POST.get("prioridade")
     data = request.POST.get('data')
-    
-    tarefa = Tarefa(vaga_id=id_vaga,
-                    titulo=titulo,
-                    prioridade=prioridade,
-                    data=data)
-    tarefa.save()
-    messages.add_message(request, constants.SUCCESS, 'Tarefa criada com sucesso')
-    return redirect(f'/vagas/vaga/{id_vaga}')        
+    try: 
+        tarefa = Tarefa(vaga_id=id_vaga,
+                        titulo=titulo,
+                        prioridade=prioridade,
+                        data=data)
+        tarefa.save()
+        messages.add_message(request, constants.SUCCESS, 'Tarefa criada com sucesso')
+        return redirect(f'/vagas/vaga/{id_vaga}') 
+    except: 
+        messages.add_message(request, constants.ERROR, 'Erro interno no sistema, impossibilitou de cadastrar uma nova tarefa. Tente novamente em alguns instantes!')
+        return redirect(f'/vagas/vaga/{id_vaga}') 
