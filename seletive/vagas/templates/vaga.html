@@ -2,7 +2,7 @@
 {% load static %}
 {% block 'title' %}Vaga->{{vaga.empresa}}: {{vaga.titulo}} {% endblock%}
 {% block 'head' %}
-    <link rel="stylesheet" href="{% static 'vaga/css/vaga.css' %}"> 
+    <link href="{% static 'vagas/css/vaga.css' %}" rel="stylesheet" />
 {% endblock %}
 
 {% block 'body' %}
@@ -31,8 +31,6 @@
                 <div class="col-md">
                     <p class="titulo2">Crie uma tarefa</p>
                     <p>Lembre-se de realizar todas suas tarefas com antecedência</p>
-
-
                     <form action="{% url 'nova_tarefa' vaga.id %}" method="POST"> {% csrf_token %}
                         <label>Título:</label>
                         <input name="titulo" type="text" class="form-control input-tarefa" placeholder="Digite o título da tarefa..." /> 
@@ -57,7 +55,7 @@
                     
                     {% for tarefa in tarefas %}
                     <div class="li-tarefa">
-                        <label>{{tarefa.titulo}}</label>
+                        <h5>{{tarefa.titulo}}</h5>
                         <label class="prioridade-bloco">
                             {{tarefa.icon}}
                             {{tarefa.get_prioridade_display}}
@@ -66,7 +64,7 @@
                             {{tarefa.data}}
                         </label>
                         <label class="prioridade-bloco">
-                            <a href="#" class="btn btn-success">Finalizado</a>
+                            <a href="{% url 'realizar_tarefa' tarefa.id %}" class="btn btn-success">Finalizado</a>
                         </label>
                 
                     </div>
