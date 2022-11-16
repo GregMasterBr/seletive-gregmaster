@@ -29,7 +29,7 @@
 
 }
 
-.btn-orange{
+.btn-orange, .btn-orange:hover{
 
     background-color: #ED8554;
     color: white;
